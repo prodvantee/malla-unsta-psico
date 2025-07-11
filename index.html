@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Malla Interactiva - Psicología UNSTA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #5a4b81;
+        }
+        .anio {
+            margin-top: 30px;
+        }
+        .anio h2 {
+            color: #6c63ff;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .materia {
+            display: inline-block;
+            padding: 10px 14px;
+            margin: 6px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .pendiente { background: #EBDCF9; color: #333; }
+        .cursando  { background: #A7D8F4; color: #333; }
+        .aprobada  { background: #B28DFF; color: white; }
+        .bloqueada { background: #E0E0E0; color: #888; cursor: not-allowed; }
+        button {
+            margin: 20px auto;
+            display: block;
+            padding: 10px 15px;
+            background: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #5a4b81; }
+    </style>
+</head>
+<body>
+    <h1>Malla Interactiva - Psicología UNSTA</h1>
+    <button onclick="reiniciar()">Reiniciar progreso</button>
+
+    <!-- 1° AÑO -->
+    <div class="anio">
+        <h2>1° Año</h2>
+        <div class="materia pendiente" data-id="filosofia" onclick="cambiarEstado(this)">Filosofía</div>
+        <div class="materia pendiente" data-id="psicologia_general" onclick="cambiarEstado(this)">Psicología General</div>
+        <div class="materia pendiente" data-id="neurociencias_1" onclick="cambiarEstado(this)">Neurociencias I</div>
+        <div class="materia bloqueada" data-id="neurociencias_2" data-correlativas="neurociencias_1" onclick="cambiarEstado(this)">Neurociencias II</div>
+        <div class="materia pendiente" data-id="antropologia_sociocultural" onclick="cambiarEstado(this)">Antropologia Sociocultural</div>
+        <div class="materia pendiente" data-id="psicoestadistica" onclick="cambiarEstado(this)">Psicoestadistica</div>
+        <div class="materia pendiente" data-id="historia_de_la_psicologia" onclick="cambiarEstado(this)">Historia de la Psicologia</div>
+    </div>
+
+    <!-- 2° AÑO -->
+    <div class="anio">
+        <h2>2° Año</h2>
+        <div class="materia bloqueada" data-id="psicologia_del_desarrollo_1" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Psicología del Desarrollo I</div>
+        <div class="materia bloqueada" data-id="psicologia_social" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Psicología Social</div>
+        <div class="materia pendiente" data-id="psicologia_de_la_religion" onclick="cambiarEstado(this)">Psicologia de la religion</div>
+        <div class="materia pendiente" data-id="teologia_dogmatica" onclick="cambiarEstado(this)">Teologia Dogmatica</div>
+        <div class="materia bloqueada" data-id="salud_publica" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Salud Publica</div>
+        <div class="materia bloqueada" data-id="dinamica_de_los_procesos_psiquicos" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Dinamica de los procesos psiquicos</div>
+        <div class="materia bloqueada" data-id="antropologia filosofica" data-correlativas="filosofia" onclick="cambiarEstado(this)">Antropologia filosofica</div>
+        <div class="materia bloqueada" data-id="sociologia" data-correlativas="antropologia_sociocultural" onclick="cambiarEstado(this)">Sociologia</div>
+    </div>
+
+    <!-- 3° AÑO -->
+    <div class="anio">
+        <h2>3° Año</h2>
+        <div class="materia bloqueada" data-id="psicopatologia_1" data-correlativas="neurociencias_2""dinamica_de_los_procesos_psiquicos" onclick="cambiarEstado(this)">Psicopatología I</I></div>
+        <div class="materia bloqueada" data-id="psicologia_de_la_personalidad" data-correlativas="psicologia_del_desarrollo_1" onclick="cambiarEstado(this)">Psicologia de la Personalidad</div>
+        <div class="materia pendiente" data-id="psicologia_del_desarrollo_2" data-correlativas="psicologia_del_desarrollo_1" onclick="cambiarEstado(this)">Psicologia del desarrollo II</div>
+        <div class="materia pendiente" data-id="teologia_moral" onclick="cambiarEstado(this)">Teologia Moral</div>
+        <div class="materia bloqueada" data-id="tec_de_exploracion_psicologica" data-correlativas="psicologia_del_desarrollo_1""dinamica_de_los_procesos_psiquicos" onclick="cambiarEstado(this)">Tec. de Exploracion Psicologica I</div>
+        <div class="materia bloqueada" data-id="epistemologia" data-correlativas="historia_de_la_psicologia" onclick="cambiarEstado(this)">Epistemologia</div>
+        <div class="materia bloqueada" data-id="metodologia_la_investigacion" data-correlativas="psicoestadistica" onclick="cambiarEstado(this)">Metodologia de la Investigacion</div>
+        <div class="materia bloqueada" data-id="clinica_de_la_discapacidad" data-correlativas="psicologia_del_desarrollo_1" onclick="cambiarEstado(this)">Clinica de la Discapacidad</div>
+    </div>
+
+    <!-- 4° AÑO -->
+    <div class="anio">
+        <h2>4° Año</h2>
+        <div class="materia bloqueada" data-id="psicologia_educacional" data-correlativas="psicologia_del_desarrollo_2" onclick="cambiarEstado(this)">Psicologia Educacional</div>
+        <div class="materia bloqueada" data-id="psicologia_juridica_y_forense" data-correlativas="tec_de_exploracion_psicologica" "psicopatologia_1" onclick="cambiarEstado(this)">Psicologia Juridica y Forense</div>
+        <div class="materia pendiente" data-id="psic_lab_y_organizac" onclick="cambiarEstado(this)">Psic. Lab. y Organizac.</div>
+        <div class="materia pendiente" data-id="psicologia_de_la_salud" onclick="cambiarEstado(this)">Psicologia de la Salud</div>
+        <div class="materia bloqueada" data-id="tec_de_exploracion_psicologica_2" data-correlativas="tec_de_exploracion_psicologica" "psicologia_de_la_personalidad" onclick="cambiarEstado(this)">Tec. de Exploracion Psicologica II</div>
+        <div class="materia bloqueada" data-id="psicologia_clinica" data-correlativas="psicologia_de_la_personalidad" "psicopatologia_1" onclick="cambiarEstado(this)">Psicologia Clinica</div>
+        <div class="materia bloqueada" data-id="psicopatologia_2" data-correlativas="psicopatologia_1" onclick="cambiarEstado(this)">Psicopatologia II</div>
+        <div class="materia bloqueada" data-id="psicopatologia_infanto_juvenil" data-correlativas="psicopatologia_1" onclick="cambiarEstado(this)">Psicopatologia Infanto Juvenil</div>
+    </div>
+
+
+    <script>
+        const estados = ["pendiente", "cursando", "aprobada"];
+
+        function cambiarEstado(el) {
+            if (el.classList.contains("bloqueada")) return;
+
+            for (let estado of estados) el.classList.remove(estado);
+
+            let actual = localStorage.getItem(el.dataset.id) || "pendiente";
+            let nuevo = estados[(estados.indexOf(actual) + 1) % estados.length];
+
+            el.classList.add(nuevo);
+            localStorage.setItem(el.dataset.id, nuevo);
+            actualizarBloqueos();
+        }
+
+        function actualizarBloqueos() {
+            document.querySelectorAll(".materia").forEach(el => {
+                if (el.dataset.correlativas) {
+                    let reqs = el.dataset.correlativas.split(",");
+                    let cumplidas = reqs.every(id => localStorage.getItem(id) === "aprobada");
+                    if (cumplidas) {
+                        el.classList.remove("bloqueada");
+                        let estadoGuardado = localStorage.getItem(el.dataset.id);
+                        if (!estadoGuardado) {
+                            el.classList.add("pendiente");
+                        } else {
+                            el.classList.add(estadoGuardado);
+                        }
+                    } else {
+                        for (let estado of estados) el.classList.remove(estado);
+                        el.classList.add("bloqueada");
+                    }
+                } else {
+                    let saved = localStorage.getItem(el.dataset.id);
+                    if (saved) {
+                        for (let estado of estados) el.classList.remove(estado);
+                        el.classList.add(saved);
+                    }
+                }
+            });
+        }
+
+        function reiniciar() {
+            if (confirm("¿Seguro que querés reiniciar tu progreso?")) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        window.onload = actualizarBloqueos;
+    </script>
+</body>
+</html>
